@@ -2,172 +2,135 @@
 title: Home
 slug: /
 sections:
-  - type: GenericSection
-    title:
-      text: Unblock your team boost your time to production
-      color: text-dark
-      type: TitleBlock
-    subtitle: Subtitle goes here
-    text: >
-      A Netlify Create website is a git repo that you own. Every code commit is
-      instantly reflected in the visual editor and since every visual edit is a
-      git commit, git workflows and collaboration just work.
-    actions:
-      - label: Get started
-        altText: ''
-        url: /
-        showIcon: false
-        icon: arrowRight
-        iconPosition: right
-        style: secondary
-        elementId: ''
-        type: Button
-      - label: See Tutorials
-        altText: ''
-        url: /
-        showIcon: true
-        icon: arrowRight
-        iconPosition: right
-        style: primary
-        elementId: ''
-        type: Link
-    media:
-      url: /images/main-hero.svg
-      altText: Unblock your team boost your time to production preview
-      elementId: ''
-      type: ImageBlock
-    badge:
-      label: This is a badge
-      color: text-primary
-      type: Badge
-    elementId: ''
-    colors: bg-light-fg-dark
-    styles:
-      self:
-        alignItems: center
-        flexDirection: row
-        padding:
-          - pt-16
-          - pl-16
-          - pb-16
-          - pr-16
+  
+  # --- INICIO DE LA SECCIÓN DE TIENDA (CATÁLOGO) ---
   - type: FeaturedItemsSection
+    # Configuración del Título de la sección
     title:
-      text: Key Benefits
+      text: Catálogo de Auriculares
       color: text-dark
-      styles:
-        self:
-          textAlign: center
       type: TitleBlock
-    subtitle: Subtitle goes here
+    subtitle: Envíos a todo el país
+    
+    # Diseño de la grilla: 'three-col-grid' muestra 3 productos por fila
+    variant: two-col-grid
+    colors: bg-light-fg-dark
+    
+    # Aquí empieza la lista de tus productos
     items:
+      
+      # --- PRODUCTO 1 ---
       - type: FeaturedItem
-        title: 500k
-        subtitle: Numbers Done
+        title: AirPods Pro (2da Gen)   # Nombre del producto
+        subtitle: $ 280.000 ARS        # PRECIO (Usamos el subtítulo para esto)
+        
+        # CARACTERÍSTICAS (Usa el símbolo >- para escribir en varias líneas)
         text: >-
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-          explicabo.
-        actions: []
-        elementId: null
-        colors: bg-neutralAlt-fg-dark
-        styles:
-          self:
-            padding:
-              - pt-8
-              - pl-8
-              - pb-8
-              - pr-8
-            borderRadius: x-large
-            flexDirection: row
-            justifyContent: center
-            textAlign: left
+          Cancelación de ruido activa. 
+          Estuche de carga MagSafe (USB-C).
+          Hasta 6 horas de audio.
+        
+        # IMAGEN DEL PRODUCTO
         image:
           type: ImageBlock
-          altText: Lightning bolt symbol on red background
-          elementId: ''
-          url: /images/icon1.svg
+          url: /images/airpods-pro.jpg  # ¡Asegúrate de subir esta foto a la carpeta public/images!
+          altText: AirPods Pro 2da Generación
           styles:
             self:
-              borderRadius: x-large
-      - title: 20x
-        subtitle: The Job Stuff
-        text: >-
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-          explicabo.
-        image:
-          url: /images/icon2.svg
-          altText: Featured icon two
-          elementId: ''
-          type: ImageBlock
-        actions: []
-        colors: bg-neutralAlt-fg-dark
+              borderRadius: large
+        
+        # BOTÓN DE COMPRA (WHATSAPP)
+        actions:
+          - label: Comprar por WhatsApp
+            # Reemplaza el número 54911... con tu número real.
+            # %20 es un espacio en blanco para el mensaje.
+            url: https://wa.me/5491112345678?text=Hola,%20quiero%20comprar%20los%20AirPods%20Pro
+            showIcon: true
+            icon: messageCircle       # Icono de mensaje (si está disponible) o arrowRight
+            style: primary            # Estilo de botón principal (lleno de color)
+            type: Button
+            
+        # Estilos de la tarjeta del producto
+        colors: bg-neutralAlt-fg-dark # Fondo grisáceo para destacar la tarjeta
         styles:
           self:
-            padding:
-              - pt-8
-              - pl-8
-              - pb-8
-              - pr-8
-            borderRadius: x-large
-            flexDirection: row
-            textAlign: left
-            justifyContent: center
-        type: FeaturedItem
-      - title: 200%
-        subtitle: Faster
+            padding: ['pt-6', 'pb-6', 'pl-6', 'pr-6'] # Espaciado interno
+            borderRadius: large       # Bordes redondeados
+            flexDirection: col        # Imagen arriba, texto abajo
+            textAlign: center         # Todo centrado
+
+      # --- PRODUCTO 2 ---
+      - type: FeaturedItem
+        title: AirPods Max Plateados
+        subtitle: $ 650.000 ARS
         text: >-
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-          explicabo.
+          Sonido de alta fidelidad. 
+          Almohadillas de espuma viscoelástica.
         image:
-          url: /images/icon3.svg
-          altText: Featured icon three
-          elementId: ''
           type: ImageBlock
-        actions: []
-        colors: bg-neutralAlt-fg-dark
+          url: /images/airpods-max-plateados.jpg
+          altText: AirPods Max Plateados
+          styles:
+            self:
+              borderRadius: large
+        actions:
+          - label: Comprar por WhatsApp
+            # Reemplaza el número 54911... con tu número real.
+            # %20 es un espacio en blanco para el mensaje.
+            url: https://wa.me/5491112345678?text=Hola,%20quiero%20comprar%20los%20AirPods%20Pro
+            showIcon: true
+            icon: messageCircle       # Icono de mensaje (si está disponible) o arrowRight
+            style: primary            # Estilo de botón principal (lleno de color)
+            type: Button
+            
+        # Estilos de la tarjeta del producto
+        colors: bg-neutralAlt-fg-dark # Fondo grisáceo para destacar la tarjeta
         styles:
           self:
-            padding:
-              - pt-8
-              - pl-8
-              - pb-8
-              - pr-8
-            borderRadius: x-large
-            flexDirection: row
-        type: FeaturedItem
-    actions:
-      - label: Get started
-        altText: ''
-        url: /
-        showIcon: false
-        icon: arrowRight
-        iconPosition: right
-        style: primary
-        elementId: ''
-        type: Button
-    badge:
-      label: This is a badge
-      color: text-primary
-      styles:
-        self:
-          textAlign: center
-      type: Badge
-    elementId: ''
-    variant: three-col-grid
-    colors: bg-neutral-fg-dark
+            padding: ['pt-6', 'pb-6', 'pl-6', 'pr-6'] # Espaciado interno
+            borderRadius: large       # Bordes redondeados
+            flexDirection: col        # Imagen arriba, texto abajo
+            textAlign: center         # Todo centrado
+            # --- PRODUCTO 3 ---
+      - type: FeaturedItem
+        title: AirPods Max Negro
+        subtitle: $ 650.000 ARS
+        text: >-
+          Sonido de alta fidelidad. 
+          Almohadillas de espuma viscoelástica.
+          Disponible en Silver y Space Gray.
+        image:
+          type: ImageBlock
+          url: /images/airpods-max-negro.jpg
+          altText: AirPods Max Silver
+          styles:
+            self:
+              borderRadius: large
+        actions:
+          - label: Comprar por WhatsApp
+            # Reemplaza el número 54911... con tu número real.
+            # %20 es un espacio en blanco para el mensaje.
+            url: https://wa.me/5491112345678?text=Hola,%20quiero%20comprar%20los%20AirPods%20Pro
+            showIcon: true
+            icon: messageCircle       # Icono de mensaje (si está disponible) o arrowRight
+            style: primary            # Estilo de botón principal (lleno de color)
+            type: Button
+            
+        # Estilos de la tarjeta del producto
+        colors: bg-neutralAlt-fg-dark # Fondo grisáceo para destacar la tarjeta
+        styles:
+          self:
+            padding: ['pt-6', 'pb-6', 'pl-6', 'pr-6'] # Espaciado interno
+            borderRadius: large       # Bordes redondeados
+            flexDirection: col        # Imagen arriba, texto abajo
+            textAlign: center         # Todo centrado
+
+    # Configuración de espaciado de toda la sección
     styles:
       self:
-        padding:
-          - pb-16
-          - pt-16
-          - pl-16
-          - pr-16
+        padding: ['pt-16', 'pb-16', 'pl-4', 'pr-4']
         justifyContent: center
-      subtitle:
-        textAlign: center
+  # --- FIN DE LA SECCIÓN DE TIENDA ---
   - subtitle: Award winning enterprises trust us
     images:
       - url: /images/empathy-logo.svg
