@@ -33,7 +33,7 @@ sections:
         # IMAGEN DEL PRODUCTO
         image:
           type: ImageBlock
-          url: /images/airpods-pro.jpg  # ¡Asegúrate de subir esta foto a la carpeta public/images!
+          url: /images/airpods2.jpg  # ¡Asegúrate de subir esta foto a la carpeta public/images!
           altText: AirPods Pro 2da Generación
           styles:
             self:
@@ -61,16 +61,16 @@ sections:
 
       # --- PRODUCTO 2 ---
       - type: FeaturedItem
-        title: AirPods Max
+        title: AirPods Max negro
         subtitle: $ 650.000 ARS
         text: >-
-          Sonido de alta fidelidad. 
-          Almohadillas de espuma viscoelástica.
-          Disponible en Silver y Space Gray.
+          +12 horas de audio, con regulador de volumen, vincha regulable, boton de encendido
+          viene tambien con su funda antirayones, de alta resistencia que lo protege del polvo y suciedad
+          con su vinculacion POP-UP
         image:
           type: ImageBlock
-          url: /images/airpods-max.jpg
-          altText: AirPods Max Silver
+          url: /images/AirpodsMaxNegro.jpg
+          altText: AirPods Max negro
           styles:
             self:
               borderRadius: large
@@ -93,6 +93,45 @@ sections:
             flexDirection: col        # Imagen arriba, texto abajo
             textAlign: center         # Todo centrado
 
+      # --- PRODUCTO 3 ---
+      - type: FeaturedItem
+        title: AirPods Max plateados  # Nombre del producto
+        subtitle: $ 280.000 ARS        # PRECIO (Usamos el subtítulo para esto)
+        
+        # CARACTERÍSTICAS (Usa el símbolo >- para escribir en varias líneas)
+        text: >-
+          Cancelación de ruido activa. 
+          Estuche de carga MagSafe (USB-C).
+          Hasta 6 horas de audio.
+        
+        # IMAGEN DEL PRODUCTO
+        image:
+          type: ImageBlock
+          url: /images/AirpodsMaxPlateados.jpg  # ¡Asegúrate de subir esta foto a la carpeta public/images!
+          altText: AirPods Max plateados
+          styles:
+            self:
+              borderRadius: large
+        
+        # BOTÓN DE COMPRA (WHATSAPP)
+        actions:
+          - label: Comprar por WhatsApp
+            # Reemplaza el número 54911... con tu número real.
+            # %20 es un espacio en blanco para el mensaje.
+            url: https://wa.me/5491112345678?text=Hola,%20quiero%20comprar%20los%20AirPods%20Pro
+            showIcon: true
+            icon: messageCircle       # Icono de mensaje (si está disponible) o arrowRight
+            style: primary            # Estilo de botón principal (lleno de color)
+            type: Button
+            
+        # Estilos de la tarjeta del producto
+        colors: bg-neutralAlt-fg-dark # Fondo grisáceo para destacar la tarjeta
+        styles:
+          self:
+            padding: ['pt-6', 'pb-6', 'pl-6', 'pr-6'] # Espaciado interno
+            borderRadius: large       # Bordes redondeados
+            flexDirection: col        # Imagen arriba, texto abajo
+            textAlign: center         # Todo centrado
     # Configuración de espaciado de toda la sección
     styles:
       self:
