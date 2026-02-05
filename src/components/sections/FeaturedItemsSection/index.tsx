@@ -74,6 +74,7 @@ export default function FeaturedItemsSection(props) {
     );
 }
 
+
 function FeaturedItemVariants(props) {
     const { variant = 'three-col-grid', ...rest } = props;
     switch (variant) {
@@ -98,7 +99,8 @@ function FeaturedItemsThreeColGrid(props) {
     const FeaturedItem = getComponent('FeaturedItem');
     return (
         <div
-            className={classNames('w-full', 'grid', 'gap-10', 'sm:grid-cols-2', 'lg:grid-cols-3', { 'mt-12': hasTopMargin })}
+
+            className={classNames('w-full', 'grid', 'grid-cols-2', 'gap-4', 'sm:gap-10', 'sm:grid-cols-2', 'lg:grid-cols-3', { 'mt-12': hasTopMargin })}
             {...(hasAnnotations && { 'data-sb-field-path': '.items' })}
         >
             {items.map((item, index) => (
@@ -116,15 +118,8 @@ function FeaturedItemsTwoColGrid(props) {
     const FeaturedItem = getComponent('FeaturedItem');
     return (
         <div
-            className={classNames(
-                'w-full',
-                'grid',
-                'grid-cols-2',       // <--- ESTO AGREGA LAS 2 COLUMNAS EN CELULAR
-                'gap-4',             // <--- Espacio pequeño en celular
-                'sm:gap-10',         // <--- Espacio grande en PC
-                'sm:grid-cols-2',
-                { 'mt-12': hasTopMargin }
-            )}
+
+            className={classNames('w-full', 'grid', 'grid-cols-2', 'gap-4', 'sm:gap-10', 'sm:grid-cols-2', { 'mt-12': hasTopMargin })}
             {...(hasAnnotations && { 'data-sb-field-path': '.items' })}
         >
             {items.map((item, index) => (

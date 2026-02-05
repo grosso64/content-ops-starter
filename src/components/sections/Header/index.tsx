@@ -242,8 +242,15 @@ function MobileMenu(props) {
 
 function SiteLogoLink({ title, logo, enableAnnotations }) {
     return (
-        <Link href="/" className="flex items-center">
-            {logo && <ImageBlock {...logo} {...(enableAnnotations && { 'data-sb-field-path': 'logo' })} />}
+        <Link href="/" className="flex items-center gap-3">
+            {logo && (
+                <ImageBlock
+                    {...logo}
+                    className="w-auto shrink-0"
+                    imageClassName="h-8 w-auto sm:h-10"
+                    {...(enableAnnotations && { 'data-sb-field-path': 'logo' })}
+                />
+            )}
             {title && (
                 <span className="h4" {...(enableAnnotations && { 'data-sb-field-path': 'title' })}>
                     {title}
@@ -316,8 +323,8 @@ function LinkWithSubnav(props) {
             onMouseLeave={
                 !process.env.stackbitPreview && !inMobileMenu
                     ? () => {
-                          setIsSubNavOpen(false);
-                      }
+                        setIsSubNavOpen(false);
+                    }
                     : undefined
             }
             data-sb-field-path={fieldPath}
@@ -327,8 +334,8 @@ function LinkWithSubnav(props) {
                 onMouseOver={
                     !process.env.stackbitPreview && !inMobileMenu
                         ? () => {
-                              setIsSubNavOpen(true);
-                          }
+                            setIsSubNavOpen(true);
+                        }
                         : undefined
                 }
                 onClick={() => setIsSubNavOpen((prev) => !prev)}

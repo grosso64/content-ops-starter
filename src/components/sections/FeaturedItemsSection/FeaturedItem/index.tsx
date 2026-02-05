@@ -24,10 +24,10 @@ export default function FeaturedItem(props) {
                 styles?.self?.padding ? mapStyles({ padding: styles?.self?.padding }) : undefined,
                 styles?.self?.borderWidth && styles?.self?.borderWidth !== 0 && styles?.self?.borderStyle !== 'none'
                     ? mapStyles({
-                          borderWidth: styles?.self?.borderWidth,
-                          borderStyle: styles?.self?.borderStyle,
-                          borderColor: styles?.self?.borderColor ?? 'border-primary'
-                      })
+                        borderWidth: styles?.self?.borderWidth,
+                        borderStyle: styles?.self?.borderStyle,
+                        borderColor: styles?.self?.borderColor ?? 'border-primary'
+                    })
                     : undefined,
                 styles?.self?.borderRadius ? mapStyles({ borderRadius: styles?.self?.borderRadius }) : undefined,
                 styles?.self?.textAlign ? mapStyles({ textAlign: styles?.self?.textAlign }) : undefined,
@@ -58,7 +58,7 @@ export default function FeaturedItem(props) {
                         )}
                         {title && (
                             <TitleTag
-                                className={classNames('h3', {
+                                className={classNames('h3', 'text-base sm:text-lg', {
                                     'mt-2': tagline
                                 })}
                                 {...(fieldPath && { 'data-sb-field-path': '.title' })}
@@ -68,7 +68,7 @@ export default function FeaturedItem(props) {
                         )}
                         {subtitle && (
                             <p
-                                className={classNames('text-lg', {
+                                className={classNames('text-sm sm:text-base', {
                                     'mt-2': tagline || title
                                 })}
                                 {...(fieldPath && { 'data-sb-field-path': '.subtitle' })}
@@ -80,6 +80,7 @@ export default function FeaturedItem(props) {
                             <Markdown
                                 options={{ forceBlock: true, forceWrapper: true }}
                                 className={classNames('sb-markdown', {
+                                    'text-xs sm:text-sm': true,
                                     'mt-4': tagline || title || subtitle
                                 })}
                                 {...(fieldPath && { 'data-sb-field-path': '.text' })}
