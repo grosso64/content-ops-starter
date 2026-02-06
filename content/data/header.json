@@ -29,9 +29,9 @@
             "type": "Link"
         },
         {
-            "label": "Contacto",
-            "altText": "Blog",
-            "url": "/blog",
+            "label": "Preguntas frecuentes",
+            "altText": "PreguntasFrecuentes",
+            "url": "/PreguntasFrecuentes",
             "icon": "arrowRight",
             "iconPosition": "right",
             "style": "secondary",

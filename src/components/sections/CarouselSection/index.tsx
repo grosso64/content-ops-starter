@@ -84,19 +84,50 @@ function CarouselVariants(props) {
 function CarouselWithNavigation({ items = [], hasTopMargin, hasSectionTitle, hasAnnotations }) {
     const FeaturedItem = getComponent('FeaturedItem');
     const [swiperRef, setSwiperRef] = React.useState<SwiperClass>();
+    const [activeIndex, setActiveIndex] = React.useState(0);
 
     return (
         <div className={classNames('w-full', 'relative', { 'mt-12': hasTopMargin })} {...(hasAnnotations && { 'data-sb-field-path': '.items' })}>
-            <Swiper effect={'fade'} fadeEffect={{ crossFade: true }} speed={500} loop={true} autoHeight={true} modules={[EffectFade]} onSwiper={setSwiperRef}>
+            <Swiper
+                effect={'fade'}
+                fadeEffect={{ crossFade: true }}
+                speed={500}
+                loop={true}
+                autoHeight={true}
+                modules={[EffectFade]}
+                onSwiper={setSwiperRef}
+                onSlideChange={(swiper) => setActiveIndex(swiper.realIndex ?? swiper.activeIndex)}
+            >
                 {items.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <div className="w-full max-w-5xl mx-auto">
+                        <div className="w-full mx-auto px-4 sm:px-6 lg:px-0 max-w-6xl">
                             <FeaturedItem {...item} hasSectionTitle={hasSectionTitle} {...(hasAnnotations && { 'data-sb-field-path': `.${index}` })} />
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className={classNames('sb-carousel-nav', items.length > 1 ? 'flex justify-center mt-8 xl:mt-0' : 'hidden')}>
+            <div className={classNames('mt-6 flex flex-wrap justify-center gap-2 sm:hidden', items.length > 1 ? '' : 'hidden')}>
+                {items.map((item, index) => {
+                    const label = item?.tagline || `Slide ${index + 1}`;
+                    return (
+                        <button
+                            key={index}
+                            type="button"
+                            className={classNames(
+                                'rounded-full border px-3 py-1.5 text-xs font-medium transition',
+                                activeIndex === index ? 'border-current bg-current text-light' : 'border-current text-current'
+                            )}
+                            onClick={() => {
+                                swiperRef?.slideToLoop(index);
+                                setActiveIndex(index);
+                            }}
+                        >
+                            {label}
+                        </button>
+                    );
+                })}
+            </div>
+            <div className={classNames('sb-carousel-nav', items.length > 1 ? 'hidden sm:flex justify-center mt-8 xl:mt-0' : 'hidden')}>
                 <button
                     className="inline-flex items-center justify-center w-10 h-10 mx-2 rounded-full cursor-pointer sb-carousel-prev xl:absolute xl:left-0 xl:top-1/2 xl:-translate-y-1/2 xl:z-50"
                     aria-label="Previous"
@@ -147,7 +178,7 @@ function CarouselMultipleWithNavigation({ items = [], hasTopMargin, hasSectionTi
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className={classNames('sb-carousel-nav', itemsTotal > 1 ? 'flex justify-center gap-4 mt-8' : 'hidden')}>
+          <div className={classNames('sb-carousel-nav', itemsTotal > 1 ? 'hidden sm:flex justify-center gap-4 mt-8' : 'hidden')}>
                 <button
                     className="inline-flex items-center justify-center w-10 h-10 rounded-full cursor-pointer sb-carousel-prev"
                     aria-label="Previous"
