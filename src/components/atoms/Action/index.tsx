@@ -1,12 +1,14 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import Link from '../Link';
+import { useRouter } from 'next/router'; // 1. Importamos el router
 import { iconMap } from '../../svgs'; 
 
 export default function Action(props) {
     const { elementId, className, label, altText, url, showIcon, icon, iconPosition = 'right', style = 'primary' } = props;
+    const router = useRouter(); 
     
-    // DETECTOR DE ESTILOS PERSONALIZADOS
+    // DETECTOR DE BOTONES ESPECIALES
     const isWhatsApp = url?.includes('wa.me');
     const isCorreoArgentino = url?.includes('correoargentino');
     const isAndreani = url?.includes('andreani');
@@ -23,18 +25,12 @@ export default function Action(props) {
         />
     ) : null;
 
-    // SELECCIÓN DE CLASE SEGÚN EL LINK
+    // SELECCIÓN DE CLASE
     let customClass = '';
-    
-    if (isWhatsApp) {
-        customClass = 'button2'; // Verde (WhatsApp)
-    } else if (isCorreoArgentino) {
-        customClass = 'button-yellow'; // Amarillo (Correo)
-    } else if (isAndreani) {
-        customClass = 'button-red'; // Rojo (Andreani)
-    }
+    if (isWhatsApp) customClass = 'button2';
+    else if (isCorreoArgentino) customClass = 'button-yellow';
+    else if (isAndreani) customClass = 'button-red';
 
-    // Si tiene clase personalizada, usamos esa. Si no, usamos las normales.
     const finalClassNames = customClass 
         ? classNames(customClass, className) 
         : classNames(
@@ -57,12 +53,33 @@ export default function Action(props) {
             className
           );
 
+    // --- LA MAGIA DEL RETRASO ---
+    const handleClick = (e) => {
+        // Solo si es un botón especial con animación
+        if (customClass) {
+            e.preventDefault(); // Detenemos el salto inmediato
+
+            // Esperamos 600ms (la animación dura 500ms)
+            setTimeout(() => {
+                if (url.startsWith('http')) {
+                    // Si es externo (WhatsApp, Correo, Andreani)
+                    window.location.href = url; 
+                } else {
+                    // Si fuera interno
+                    router.push(url);
+                }
+            }, 600);
+        }
+        // Si NO es especial, el Link funciona normal
+    };
+
     return (
         <Link
             href={url}
             aria-label={altText}
             id={elementId}
             className={finalClassNames}
+            onClick={handleClick} // <--- Conectamos el clic aquí
         >
             {renderedIcon}
             <span className={classNames({ 'order-0': iconPosition === 'right', 'order-1': iconPosition === 'left' })}>
