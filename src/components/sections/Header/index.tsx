@@ -17,12 +17,14 @@ export default function Header(props) {
             className={classNames(
                 'sb-component',
                 'sb-component-header',
+                'border-2 border-black rounded-2xl',
                 colors,
                 'relative',
                 'shadow-header',
                 styles?.self?.margin ? mapStyles({ padding: styles?.self?.margin }) : undefined,
                 styles?.self?.padding ? mapStyles({ padding: styles?.self?.padding }) : 'p-4',
                 'z-50'
+                
             )}
             {...(enableAnnotations && { 'data-sb-object-id': props?.__metadata?.id })}
         >
@@ -242,7 +244,7 @@ function MobileMenu(props) {
 
 function SiteLogoLink({ title, logo, enableAnnotations }) {
     return (
-        <Link href="/" className="flex items-center gap-3">
+         <Link href="/" className="flex items-center gap-3">
             {logo && (
                 <ImageBlock
                     {...logo}

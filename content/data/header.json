@@ -14,15 +14,15 @@
     "primaryLinks": [
         {
             "label": "Inicio",
-            "url": "/index",
+            "url": "/",
             "icon": "arrowRight",
             "iconPosition": "right",
             "style": "secondary",
             "type": "Link"
         },
         {
-            "label": "Envios",
-            "url": "/pricing",
+            "label": "seguimiento",
+            "url": "/seguimiento",
             "icon": "arrowRight",
             "iconPosition": "right",
             "style": "secondary",

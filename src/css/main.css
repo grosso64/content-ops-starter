@@ -8,6 +8,7 @@
     body {
         @apply text-base;
     }
+
     h1,
     .h1,
     h2,
@@ -26,22 +27,28 @@
 @layer components {
     .sb-markdown {
         @apply leading-relaxed;
+
         a {
             @apply underline transition duration-200 ease-in;
         }
+
         a:hover {
             @apply text-primary;
         }
+
         b,
         strong {
             @apply font-bold;
         }
+
         em {
             @apply italic;
         }
-        * + * {
+
+        *+* {
             margin-top: 1.5em;
         }
+
         h1,
         h2,
         h3,
@@ -49,10 +56,12 @@
         h5,
         h6 {
             margin-top: 3.5rem;
+
             &:first-child {
                 margin-top: 0;
             }
         }
+
         h1+h2,
         h2+h3,
         h3+h4,
@@ -60,68 +69,126 @@
         h5+h6 {
             margin-top: 1.5rem;
         }
+
         ol {
             @apply list-decimal;
             padding-left: 1.25em;
         }
+
         ul {
             @apply list-disc;
             padding-left: 1.25em;
         }
-        li > ul,
-        li > ol {
+
+        li>ul,
+        li>ol {
             margin: 0;
         }
-        li + li {
+
+        li+li {
             margin-top: 0.5rem;
         }
+
         blockquote {
             @apply border-l-4 border-current;
             font-size: 1.25em;
             line-height: 1.4;
             padding-left: 1.25em;
+
             &:not(:first-child) {
                 margin-top: 2.5rem;
             }
+
             &:not(:last-child) {
                 margin-bottom: 2.5rem;
             }
         }
+
         pre {
             @apply border border-current overflow-x-auto leading-normal;
             padding: 1.25em;
         }
+
         hr {
             @apply bg-current border-0 h-px;
+
             &:not(:first-child) {
                 margin-top: 2.5rem;
             }
+
             &:not(:last-child) {
                 margin-bottom: 2.5rem;
             }
         }
+
         figcaption {
             @apply leading-normal;
             font-size: 0.875em;
             margin: 0.5rem 0 0;
         }
+
         table {
             @apply border border-current border-collapse text-left w-full;
         }
+
         caption {
             @apply text-left;
             font-size: 0.875em;
             margin: 0 0 0.5rem;
         }
+ /* App loader */
+   .sb-app-loader {
+    position: fixed;        /* Se queda fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;           /* Ancho completo */
+    height: 100%;          /* Alto completo */
+    z-index: 9999;         /* Se pone ENCIMA de todo lo demás */
+    background-color: #ffffff; /* Fondo blanco sólido para tapar la página */
+    display: flex;         /* Activamos Flexbox */
+    align-items: center;   /* Centrado Vertical */
+    justify-content: center; /* Centrado Horizontal */
+    }
+
+/* La órbita que gira */
+    .sb-app-loader-orbit {
+    width: 100px;          /* Le damos un tamaño contenedor */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Si quieres la animación de giro en el borde, descomenta esto:
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db; 
+    border-radius: 50%;
+    animation: sb-loader-spin 2s linear infinite; 
+    */
+    }
+
+/* El logo que late */
+    .sb-app-loader-logo {
+    width: 80px;           /* Tamaño del logo */
+    height: auto;
+    animation: sb-loader-beat 1.2s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .sb-app-loader-orbit,
+        .sb-app-loader-logo {
+            animation: none;
+        }
+    }
         th,
         td {
             @apply border-r border-b border-current;
             padding: 0.5em;
         }
+
         th {
             font-weight: bold;
         }
     }
+    
 
     /* Buttons */
     .sb-component-button {
@@ -132,9 +199,11 @@
     .sb-component-link {
         @apply inline-flex justify-center items-center text-center transition duration-200 ease-linear;
     }
+
     .sb-component-link-primary {
         @apply text-primary hover:underline;
     }
+
     .sb-component-link-secondary {
         @apply text-current hover:text-primary;
     }
@@ -143,7 +212,8 @@
     option {
         color: initial;
     }
-    .sb-checkbox:checked + .sb-label:before {
+
+    .sb-checkbox:checked+.sb-label:before {
         content: '\2713';
     }
 
@@ -151,6 +221,7 @@
     .sb-image-strip-track {
         min-width: 160rem;
     }
+
     .sb-image-strip-content {
         min-width: 80rem;
     }
@@ -170,6 +241,7 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
     }
+
     .sb-carousel-tab-title-active {
         @apply opacity-100;
     }
@@ -178,150 +250,403 @@
     .bg-light-fg-dark,
     .sb-card.bg-light-fg-dark {
         @apply text-dark bg-light;
+
         .sb-input,
         .sb-select,
         .sb-textarea {
             @apply placeholder-dark/50;
         }
+
         .sb-component-button-primary {
             @apply bg-primary border-primary text-light;
         }
+
         .sb-component-button-secondary {
             @apply border-dark text-dark;
         }
+
         .sb-image-strip-wrap {
+
             &:before,
             &:after {
                 @apply from-transparent to-light;
             }
         }
+
         .sb-divider,
         .sb-footer-bottom {
             @apply border-neutral;
         }
+
         .sb-carousel-prev,
         .sb-carousel-next {
             @apply bg-dark text-light;
         }
+
         .sb-carousel-dot {
             @apply bg-dark/20;
         }
+
         .sb-carousel-dot-active {
             @apply bg-dark;
         }
     }
+
     .bg-neutral-fg-dark,
     .sb-card.bg-neutral-fg-dark {
         @apply text-dark bg-neutral;
+
         .sb-input,
         .sb-select,
         .sb-textarea {
             @apply placeholder-dark/50;
         }
+
         .sb-component-button-primary {
             @apply bg-primary border-primary text-light;
         }
+
         .sb-component-button-secondary {
             @apply border-dark text-dark;
         }
+
         .sb-image-strip-wrap {
+
             &:before,
             &:after {
                 @apply from-transparent to-neutral;
             }
         }
+
         .sb-divider,
         .sb-footer-bottom {
             @apply border-neutralAlt;
         }
+
         .sb-carousel-prev,
         .sb-carousel-next {
             @apply bg-dark text-light;
         }
+
         .sb-carousel-dot {
             @apply bg-dark/20;
         }
+
         .sb-carousel-dot-active {
             @apply bg-dark;
         }
     }
+
     .bg-dark-fg-light,
     .sb-card.bg-dark-fg-light {
         @apply text-light bg-dark;
+
         .sb-input,
         .sb-select,
         .sb-textarea {
             @apply placeholder-light/50;
         }
+
         .sb-component-button-primary {
             @apply bg-primary border-primary text-light;
         }
+
         .sb-component-button-secondary {
             @apply border-light text-light;
         }
+
         .sb-image-strip-wrap {
+
             &:before,
             &:after {
                 @apply from-transparent to-dark;
             }
         }
+
         .sb-divider,
         .sb-footer-bottom {
             @apply border-light/20;
         }
+
         .sb-carousel-prev,
         .sb-carousel-next {
             @apply bg-light text-dark;
         }
+
         .sb-carousel-dot {
             @apply bg-light/20;
         }
+
         .sb-carousel-dot-active {
             @apply bg-light;
         }
     }
+
     /* Only for cards */
     .bg-neutralAlt-fg-dark {
         @apply text-dark bg-neutralAlt;
+
         .sb-component-button-primary {
             @apply bg-primary border-primary text-light;
         }
+
         .sb-component-button-secondary {
             @apply border-dark text-dark;
         }
     }
 }
 
+/* Animación de latido */
+@keyframes sb-loader-beat {
+    0%, 100% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes sb-loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @layer utilities {
     .underline-line-through {
         text-decoration-line: underline line-through
     }
+
     .sb-animate-slide-left {
         animation-name: slideLeft;
         animation-duration: var(--sb-slide-speed, 80s);
         animation-timing-function: linear;
         animation-iteration-count: infinite;
     }
+
     @keyframes slideLeft {
         from {
-            transform: translate3d(0,0,0)
+            transform: translate3d(0, 0, 0)
         }
+
         to {
-            transform: translate3d(-50%,0,0)
+            transform: translate3d(-50%, 0, 0)
         }
     }
+
     .sb-animate-slide-right {
         animation-name: slideRight;
         animation-duration: var(--sb-slide-speed, 80s);
         animation-timing-function: linear;
         animation-iteration-count: infinite;
     }
+
     @keyframes slideRight {
         from {
-            transform: translate3d(-50%,0,0)
+            transform: translate3d(-50%, 0, 0)
         }
+
         to {
-            transform: translate3d(0,0,0)
+            transform: translate3d(0, 0, 0)
         }
     }
+    
+
+    /* --- ESTILO BOTÓN WHATSAPP --- */
+    .button2 {
+        display: inline-flex !important;
+        /* Usamos flex para centrar mejor */
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+        color: #090909;
+        padding: 0.7em 2em;
+        /* Ajusté un poco el padding */
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 0.5em;
+        background: #e8e8e8;
+        border: 1px solid #e8e8e8;
+        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+        cursor: pointer;
+        text-decoration: none !important;
+        /* Quita el subrayado si aparece */
+    }
+
+    /* Ajuste para el icono SVG dentro del botón */
+    .button2 svg {
+        height: 24px;
+        /* Tamaño controlado */
+        width: 24px;
+        margin-right: 10px;
+        /* Espacio entre icono y texto */
+        position: relative;
+        /* Cambiado de absolute a relative para que no tape el texto */
+        fill: currentColor;
+    }
+
+    .button2:active {
+        color: #666;
+        box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+    }
+
+    .button2:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) scaleY(1) scaleX(1.25);
+        top: 100%;
+        width: 140%;
+        height: 180%;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        display: block;
+        transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+        z-index: -1;
+    }
+
+    .button2:after {
+        content: "";
+        position: absolute;
+        left: 55%;
+        transform: translateX(-50%) scaleY(1) scaleX(1.45);
+        top: 180%;
+        width: 160%;
+        height: 190%;
+        background-color: #009087;
+        /* Color verde agua */
+        border-radius: 50%;
+        display: block;
+        transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+        z-index: -1;
+    }
+
+    .button2:hover {
+        color: #ffffff;
+        border: 1px solid #009087;
+    }
+
+    .button2:hover:before {
+        top: -35%;
+        background-color: #009087;
+        transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+    }
+
+    .button2:hover:after {
+        top: -45%;
+        background-color: #009087;
+        transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+    }
+    .button-yellow {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  color: #090909;
+  padding: 0.7em 2em;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.button-yellow:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button-yellow:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #FFCC00; /* AMARILLO */
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button-yellow:hover {
+  color: #000000; /* Texto negro para que se lea bien sobre amarillo */
+  border: 1px solid #FFCC00;
+}
+.button-yellow:hover:before, .button-yellow:hover:after {
+  top: -35%;
+  background-color: #FFCC00;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* --- BOTÓN ROJO (Andreani) --- */
+.button-red {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  color: #090909;
+  padding: 0.7em 2em;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.button-red:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button-red:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #E30613; /* ROJO */
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button-red:hover {
+  color: #ffffff; /* Texto blanco sobre rojo */
+  border: 1px solid #E30613;
+}
+.button-red:hover:before, .button-red:hover:after {
+  top: -35%;
+  background-color: #E30613;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
 }

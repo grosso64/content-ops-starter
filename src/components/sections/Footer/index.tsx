@@ -25,6 +25,7 @@ export default function Footer(props) {
             className={classNames(
                 'sb-component',
                 'sb-component-footer',
+                'border-2 border-black rounded-2xl',
                 colors,
                 styles?.self?.margin ? mapStyles({ padding: styles?.self?.margin }) : undefined,
                 styles?.self?.padding ? mapStyles({ padding: styles?.self?.padding }) : 'px-4 py-28'

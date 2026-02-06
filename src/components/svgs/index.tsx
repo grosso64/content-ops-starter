@@ -22,6 +22,8 @@ import ShoppingBag from './shopping-bag';
 import Twitter from './twitter';
 import Vimeo from './vimeo';
 import YouTube from './youtube';
+// 1. IMPORTAMOS TU NUEVO ICONO AQUÍ:
+import WhatsApp from './whatsapp';
 
 export const iconMap = {
     arrowDown: ArrowDown,
@@ -47,5 +49,7 @@ export const iconMap = {
     shoppingBag: ShoppingBag,
     twitter: Twitter,
     vimeo: Vimeo,
-    youtube: YouTube
+    youtube: YouTube,
+    // 2. Y LO AGREGAMOS A LA LISTA OFICIAL AQUÍ:
+    whatsapp: WhatsApp
 };

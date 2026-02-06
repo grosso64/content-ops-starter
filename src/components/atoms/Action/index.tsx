@@ -1,47 +1,73 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { iconMap } from '../../svgs';
 import Link from '../Link';
+import { iconMap } from '../../svgs'; 
 
 export default function Action(props) {
     const { elementId, className, label, altText, url, showIcon, icon, iconPosition = 'right', style = 'primary' } = props;
+    
+    // DETECTOR DE ESTILOS PERSONALIZADOS
+    const isWhatsApp = url?.includes('wa.me');
+    const isCorreoArgentino = url?.includes('correoargentino');
+    const isAndreani = url?.includes('andreani');
+
+    // BUSCADOR DE ICONOS
     const IconComponent = icon ? iconMap[icon] : null;
-    const fieldPath = props['data-sb-field-path'];
-    const annotations = fieldPath
-        ? { 'data-sb-field-path': [fieldPath, `${fieldPath}.url#@href`, `${fieldPath}.altText#@aria-label`, `${fieldPath}.elementId#@id`].join(' ').trim() }
-        : {};
-    const type = props.__metadata?.modelName;
+
+    const renderedIcon = showIcon && IconComponent ? (
+        <IconComponent 
+            className={classNames('w-6', 'h-6', 'fill-current', { 
+                'order-1 ml-3': iconPosition === 'right', 
+                'order-0 mr-3': iconPosition === 'left' 
+            })} 
+        />
+    ) : null;
+
+    // SELECCIÓN DE CLASE SEGÚN EL LINK
+    let customClass = '';
+    
+    if (isWhatsApp) {
+        customClass = 'button2'; // Verde (WhatsApp)
+    } else if (isCorreoArgentino) {
+        customClass = 'button-yellow'; // Amarillo (Correo)
+    } else if (isAndreani) {
+        customClass = 'button-red'; // Rojo (Andreani)
+    }
+
+    // Si tiene clase personalizada, usamos esa. Si no, usamos las normales.
+    const finalClassNames = customClass 
+        ? classNames(customClass, className) 
+        : classNames(
+            'sb-component-button',
+            'inline-flex',
+            'items-center',
+            'justify-center',
+            'border-2',
+            'border-current',
+            'px-6',
+            'py-3',
+            'font-medium',
+            'transition-colors',
+            'duration-300',
+            {
+                'bg-primary text-white border-primary hover:bg-white hover:text-primary': style === 'primary',
+                'bg-white text-primary border-primary hover:bg-primary hover:text-white': style === 'secondary',
+                'text-lg rounded-full': true
+            },
+            className
+          );
 
     return (
         <Link
             href={url}
             aria-label={altText}
             id={elementId}
-            className={classNames(
-                'sb-component',
-                'sb-component-block',
-                type === 'Button' ? 'sb-component-button' : 'sb-component-link',
-                {
-                    'sb-component-button-primary': type === 'Button' && style === 'primary',
-                    'sb-component-button-secondary': type === 'Button' && style === 'secondary',
-                    'sb-component-link-primary': type === 'Link' && style === 'primary',
-                    'sb-component-link-secondary': type === 'Link' && style === 'secondary'
-                },
-                className
-            )}
-            {...annotations}
+            className={finalClassNames}
         >
-            {label && <span {...(fieldPath && { 'data-sb-field-path': '.label' })}>{label}</span>}
-            {showIcon && IconComponent && (
-                <IconComponent
-                    className={classNames('shrink-0', 'fill-current', 'w-[1.25em]', 'h-[1.25em]', {
-                        'order-first': iconPosition === 'left',
-                        'mr-[0.5em]': label && iconPosition === 'left',
-                        'ml-[0.5em]': label && iconPosition === 'right'
-                    })}
-                    {...(fieldPath && { 'data-sb-field-path': '.icon' })}
-                />
-            )}
+            {renderedIcon}
+            <span className={classNames({ 'order-0': iconPosition === 'right', 'order-1': iconPosition === 'left' })}>
+                {label}
+            </span>
         </Link>
     );
 }

@@ -7,6 +7,15 @@ export const FeaturedItem: Model = {
     labelField: 'title',
     fields: [
         {
+            name: 'images',
+            type: 'list',
+            label: 'Galería de Imágenes',
+            items: {
+                type: 'model',
+                models: ['ImageBlock']
+            }
+        },
+        {
             type: 'string',
             name: 'title',
             label: 'Title',
