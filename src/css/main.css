@@ -649,4 +649,20 @@
   background-color: #E30613;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
+
+@media (max-width: 900px) {
+    .swiper-button-prev,
+    .swiper-button-next,
+    .slick-prev,
+    .slick-next,
+    button[aria-label="Previous"],
+    button[aria-label="Next"],
+    [class*="swiper-button-"], /* Atrapa cualquier botón de Swiper */
+    [class*="slick-arrow"] {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+}
 }

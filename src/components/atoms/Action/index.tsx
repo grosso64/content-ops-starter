@@ -72,6 +72,7 @@ export default function Action(props) {
         }
         // Si NO es especial, el Link funciona normal
     };
+    
 
     return (
         <Link

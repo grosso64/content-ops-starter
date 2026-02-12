@@ -1,35 +1,24 @@
 import * as React from 'react';
-import { useState } from 'react';
 import classNames from 'classnames';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { mapStylesToClassNames as mapStyles } from '../../../../utils/map-styles-to-class-names';
-import { getComponent } from '../../../components-registry';
 import ImageBlock from '../../../blocks/ImageBlock';
 import { Action } from '../../../atoms';
 
 export default function FeaturedItem(props) {
-    const { elementId, title, subtitle, text, image, images = [], actions = [], colors, styles = {}, hasSectionTitle } = props;
-    
-    // --- LÓGICA DEL CARRUSEL ---
-    const [currentIndex, setCurrentIndex] = useState(0);
-    
-    // Combinamos la imagen singular (vieja) con las nuevas (si existen)
-    // Así si solo pones una, funciona. Si pones lista, funciona el carrusel.
-    const allImages = images.length > 0 ? images : (image ? [image] : []);
-    const hasMultipleImages = allImages.length > 1;
+    const { elementId, title, subtitle, text, image, images = [], actions = [], colors, styles = {} } = props;
 
-    const nextImage = (e) => {
-        e.preventDefault(); // Evita que la página salte
-        setCurrentIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
-    };
+    // Combinamos las imágenes en una sola lista segura
+    const allImages = images.length > 0 ? images : image ? [image] : [];
 
-    const prevImage = (e) => {
-        e.preventDefault();
-        setCurrentIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
-    };
-    // ----------------------------
-
+    // Alineación izquierda por defecto para el texto descriptivo
     const defaultStyles = {
-        textAlign: 'center', // forzamos centrado si no viene estilo
+        textAlign: 'left'
     };
     const finalStyles = { ...defaultStyles, ...styles?.self };
 
@@ -39,54 +28,46 @@ export default function FeaturedItem(props) {
             className={classNames(
                 'sb-component-featured-item',
                 colors || 'bg-white',
-                'w-full', 'flex', 'flex-col', 'grow', 'relative', // relative para las flechas
+                'w-full',
+                'flex',
+                'flex-col',
+                'grow',
+                'relative',
                 mapStyles(finalStyles)
             )}
-            style={{ borderRadius: '16px', overflow: 'hidden' }} // Bordes redondeados en la tarjeta completa
+            style={{ borderRadius: '16px', overflow: 'hidden' }}
         >
-            {/* --- ZONA DE IMAGEN / CARRUSEL --- */}
-            <div className="relative w-full overflow-hidden bg-gray-100 flex items-center justify-center" style={{ minHeight: '300px' }}>
-                {allImages.length > 0 && (
-                    <div className="w-full h-full flex transition-transform duration-500 ease-in-out" 
-                         style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                        {allImages.map((img, index) => (
-                            <div key={index} className="w-full flex-shrink-0 flex justify-center items-center p-4">
-                                <ImageBlock {...img} className="max-h-64 object-contain mx-auto" /> 
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* FLECHAS (Solo si hay más de 1 foto) */}
-                {hasMultipleImages && (
-                    <>
-                        {/* Flecha Izquierda */}
-                        <button 
-                            onClick={prevImage}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md z-10 transition-all"
-                            aria-label="Anterior"
+            {/* --- ZONA DE IMAGEN (Swiper) --- */}
+            <div className="relative w-full bg-gray-100 overflow-hidden">
+                <div className="relative w-full min-h-[260px] sm:min-h-[320px] md:min-h-[400px] flex items-center justify-center">
+                    {allImages.length > 0 ? (
+                        <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation={allImages.length > 1}
+                            pagination={{ clickable: true, dynamicBullets: true }}
+                            loop={allImages.length > 1}
+                            className="absolute inset-0 w-full h-full"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M15 18l-6-6 6-6"/>
-                            </svg>
-                        </button>
-
-                        {/* Flecha Derecha */}
-                        <button 
-                            onClick={nextImage}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md z-10 transition-all"
-                            aria-label="Siguiente"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M9 18l6-6-6-6"/>
-                            </svg>
-                        </button>
-                    </>
-                )}
+                            {allImages.map((img, index) => (
+                                <SwiperSlide key={index}>
+                                    <div className="w-full h-full min-h-[260px] sm:min-h-[320px] md:min-h-[400px] flex items-center justify-center">
+                                        <ImageBlock
+                                            {...img}
+                                            className="w-full h-full"
+                                            imageClassName="w-full h-full object-cover block"
+                                            style={{ height: '100%', width: '100%' }}
+                                        />
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    ) : (
+                        <div className="w-full h-64 flex items-center justify-center text-gray-400 text-sm">Sin imagen disponible</div>
+                    )}
+                </div>
             </div>
 
-            {/* --- CONTENIDO DE TEXTO --- */}
-            <div className="p-6 flex flex-col grow items-center">
+            <div className="p-1 flex flex-col grow items-center">
                 {title && (
                     <h3 className={classNames('text-xl font-bold mb-2', { 'mt-4': !image })}>
                         {title}
